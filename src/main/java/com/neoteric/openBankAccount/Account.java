@@ -41,6 +41,6 @@ public class Account {
             balance -= amount;
             return true;
         }
-        return false; // Withdrawal denied due to insufficient funds
+        return false;      // Withdrawal denied due to insufficient funds
     }
 }

@@ -5,6 +5,23 @@ import com.neoteric.restuarent.Address;
 public class Employee {
     public String emp_name;
     public String emp_id;
+
+    public void setEmp_name(String emp_name) {
+        this.emp_name = emp_name;
+    }
+
+    public void setEmp_id(String emp_id) {
+        this.emp_id = emp_id;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public String salary;
     public Address address;
 
