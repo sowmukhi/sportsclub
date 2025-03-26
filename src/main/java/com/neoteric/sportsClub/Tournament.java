@@ -10,5 +10,6 @@ public class Tournament {
         player2.displayDetails();
         player3.displayDetails();
         player4.displayDetails();
+
     }
 }
