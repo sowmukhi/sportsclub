@@ -11,6 +11,10 @@ public class BookMyShowPaymentGateway {
             paymentService=new NetBanking();
         } else if ("ForexPaymentService".equalsIgnoreCase(paymentType)) {
             paymentService=new ForexPaymentServiceImp();
+        }else if ("PhonePe".equalsIgnoreCase(paymentType)) {
+            paymentService = new PhonePeIntegration();
+        } else if ("Razorpay".equalsIgnoreCase(paymentType)) {
+            paymentService = new RazorpayIntegration();
         }
         return paymentService;
     }

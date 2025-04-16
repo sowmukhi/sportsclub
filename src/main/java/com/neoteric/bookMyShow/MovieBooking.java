@@ -19,20 +19,23 @@ public class MovieBooking extends BookMyShow{
         return paymentService.refund(orderId, merchantId, amount);
     }
 
-    public Ticket bookMovieTicket(String fromAccount, Order order, String seatNumber) {
+    public Ticket bookMovieTicket(String fromAccount, Order order, String seatNumber) throws InvalidSeatException, SeatNotAvailableException, PaymentFailedException {
         Seat selectedSeat = slot.getSeatByNumber(seatNumber);
 
         if (selectedSeat == null) {
-            System.out.println("Seat " + seatNumber + " does not exist.");
-            return null;
+            throw new InvalidSeatException("Seat " + seatNumber + " does not exist.");
         }
 
         if (!selectedSeat.book()) {
-            System.out.println("Seat " + seatNumber + " is already booked.");
-            return null;
+            throw new SeatNotAvailableException("Seat " + seatNumber + " is already booked.");
         }
 
         System.out.println("Seat " + seatNumber + " booked successfully.");
-        return getTicket(fromAccount, order.getAmount(), order);
+
+        try {
+            return getTicket(fromAccount, order.getAmount(), order);
+        } catch (IllegalArgumentException e) {
+            throw new PaymentFailedException("Payment failed: " + e.getMessage());
+        }
     }
 }

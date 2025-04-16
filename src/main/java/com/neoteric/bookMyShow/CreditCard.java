@@ -3,6 +3,9 @@ package com.neoteric.bookMyShow;
 public class CreditCard implements PaymentService{
     @Override
     public void makePayment(String orderId, String merchantId, double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount must be positive.");
+        }
         System.out.println("Credit Card Payment:");
         System.out.println("Order ID: " + orderId);
         System.out.println("Merchant ID: " + merchantId);
